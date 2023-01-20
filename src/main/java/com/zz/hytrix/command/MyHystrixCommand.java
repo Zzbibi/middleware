@@ -25,7 +25,7 @@ public class MyHystrixCommand extends HystrixCommand<Response> {
                                 // 熔断器从打开到扳开的时间窗口
                                 .withCircuitBreakerSleepWindowInMilliseconds(3000)
                         )
-                        // 线程池核心线程数
+                        // 线程池核心线程数 -- threadPoolKey一样的话，线程池会服用
                         .andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.Setter().withCoreSize(20))
         );
         this.service = service;
