@@ -5,6 +5,8 @@ import java.nio.channels.AsynchronousSocketChannel;
 import java.nio.channels.CompletionHandler;
 
 /**
+ * 接收连接成功之后的回调
+ *
  * @Author zhangzhen
  * @create 2023/2/6 21:51
  */

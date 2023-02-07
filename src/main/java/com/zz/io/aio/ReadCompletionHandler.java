@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 /**
+ * 从channel读取数据成功之后的回调
+ *
  * @Author zhangzhen
  * @create 2023/2/6 22:00
  */
