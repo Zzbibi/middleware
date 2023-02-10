@@ -27,6 +27,9 @@ public class TimeServer {
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 1024)
+                    /**
+                     * childHandler在客户端连接成功之后才会执行
+                     */
                     .childHandler(new ChildChannelHandler());
             // 绑定端口，同步等待成功
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();

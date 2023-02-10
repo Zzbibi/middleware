@@ -25,6 +25,9 @@ public class TimeClient {
             bootstrap.group(group)
                     .channel(NioSocketChannel.class)
                     .option(ChannelOption.TCP_NODELAY, true)
+                    /**
+                     * handler在初始化时就会执行
+                     */
                     .handler(new TimeClientInitializer());
             // 发起异步连接操作
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
