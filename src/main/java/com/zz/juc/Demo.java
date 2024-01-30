@@ -1,5 +1,7 @@
 package com.zz.juc;
 
+import org.junit.Test;
+
 import javax.swing.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
@@ -14,7 +16,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Demo {
 
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         Printer printer = new Printer(1, 50);
         Thread thread1 = new Thread(() -> {
             printer.print(1, 2, "A");
@@ -26,7 +29,7 @@ public class Demo {
         thread2.start();
     }
 
-    public static class Printer {
+    public class Printer {
         private int flag;
         private int loopNum;
         private Lock lock = new ReentrantLock();
@@ -72,5 +75,43 @@ public class Demo {
             }
         }
     }
+
+    public static void main(String[] args) {
+        Printer1 printer1 = new Printer1(50, 1);
+
+        new Thread(() -> printer1.print(1, 2), "A").start();
+        new Thread(() -> printer1.print(2, 1), "B").start();
+    }
+    public static class Printer1 {
+
+        private int num = 0;
+        private int loopNum;
+        private int flag;
+
+        public Printer1(int loopNum, int flag) {
+            this.loopNum = loopNum;
+            this.flag = flag;
+        }
+
+        public void print(int currFlag, int nextFlag) {
+            for (int i = 0; i < loopNum; i++) {
+                synchronized (this) {
+                    while (currFlag != flag) {
+                        try {
+                            wait();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    System.out.println("Thread:" + Thread.currentThread().getName() + " num:" +  num++);
+                    flag = nextFlag;
+                    notify();
+                }
+            }
+        }
+    }
+
+
 
 }
