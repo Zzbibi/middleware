@@ -15,6 +15,8 @@
         <slf4j.version>1.7.7</slf4j.version>
         <mysql.version>8.0.28</mysql.version>
         <transmittable.version>2.14.2</transmittable.version>
+        <jedis.version>5.1.0</jedis.version>
+        <redisson.version>3.26.1</redisson.version>
     </properties>
 
     <dependencies>
@@ -59,6 +61,19 @@
             <artifactId>transmittable-thread-local</artifactId>
             <version>${transmittable.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>${redisson.version}</version>
+        </dependency>
+
 
     </dependencies>
 

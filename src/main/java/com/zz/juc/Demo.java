@@ -85,7 +85,7 @@ public class Demo {
     public static class Printer1 {
 
         private int num = 0;
-        private int loopNum;
+        private final int loopNum;
         private int flag;
 
         public Printer1(int loopNum, int flag) {
