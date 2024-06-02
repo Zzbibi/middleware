@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Demo {
 
+    private int status;
+
     public static void main(String[] args) {
         HashedWheelTimer timer = new HashedWheelTimer();
 
